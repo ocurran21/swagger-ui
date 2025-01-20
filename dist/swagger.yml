@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: Pokemon API
+  description: An API to get Pokemon details
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /random-pokemon:
+    get:
+      summary: Get a random Pokemon
+      responses:
+        '200':
+          description: A random Pokemon
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pokemon_id:
+                    type: integer
+                  pokemon_image:
+                    type: string
+                  pokemon_names:
+                    type: array
+                    items:
+                      type: string
+  /next-pokemon:
+    get:
+      summary: Get the next Pokemon
+      responses:
+        '200':
+          description: The next Pokemon
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pokemon_id:
+                    type: integer
+                  pokemon_image:
+                    type: string
+                  pokemon_names:
+                    type: array
+                    items:
+                      type: string
+  /verify-pokemon:
+    get:
+      summary: Verify a Pokemon name
+      parameters:
+        - in: query
+          name: guessed_name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Verification result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  correct_pokemon_name:
+                    type: string
+                  answer_correct:
+                    type: boolean
